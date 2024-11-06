@@ -251,7 +251,7 @@ import static org.junit.jupiter.api.Assertions.*;
         listeATester.ajout(2);
         listeATester.ajout(1);
         Noeud r2 = listeATester.tete;
-        "ListeSimple(Noeud(1), Noeud(2), Noeud(3), Noeud(4), Noeud(5))",listeATester.toString());
+        assertEquals("ListeSimple(Noeud(1), Noeud(2), Noeud(3), Noeud(4), Noeud(5))",listeATester.toString());
         listeATester.echanger(r1, r2);
         System.out.println(listeATester);
         assertEquals("ListeSimple(Noeud(4), Noeud(2), Noeud(3), Noeud(1), Noeud(5))",listeATester.toString());
