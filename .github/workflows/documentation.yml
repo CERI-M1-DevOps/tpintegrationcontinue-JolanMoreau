@@ -26,8 +26,8 @@ jobs:
       - name: Generate Javadoc
         run: mvn -B javadoc:javadoc
 
-      -name: Github Pages
-       uses: peaceiris/actions-gh-pages@v4
+      - name: Github Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./target/reports/apidocs
