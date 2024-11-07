@@ -382,5 +382,12 @@ void supprimeTousElementAbsent() {
     assertEquals(2, listeATester.getSize());
 }
 
+
+@Test
+void getPrecedentTete() {
+    listeATester.ajout(1);
+    Noeud tete = listeATester.tete;  // tête de la liste
+    assertNull(listeATester.getPrecedent(tete), "Si r est la tête de la liste, getPrecedent devrait retourner null.");
+}
         
 }
