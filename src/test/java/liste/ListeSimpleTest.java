@@ -286,13 +286,6 @@ import static org.junit.jupiter.api.Assertions.*;
         assertEquals(2, listeATester.getAvantDernier().getElement());
     }
 
-    @Test
-    void getPrecedent() {
-        listeATester.ajout(1);
-        listeATester.ajout(2);
-        Noeud secondNode = listeATester.tete;
-        assertEquals(1, listeATester.getPrecedent(secondNode).getElement());
-    }
 
 
 
@@ -321,5 +314,17 @@ import static org.junit.jupiter.api.Assertions.*;
         Noeud r1 = listeATester.tete;
         listeATester.echanger(r1, r1);
         assertEquals("ListeSimple(Noeud(1))", listeATester.toString());
+    }
+    void getPrecedent() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        
+        Noeud r = listeATester.tete.getSuivant();  // Noeud valide pour getPrecedent
+    
+        assertNotNull(r, "Le noeud r devrait être dans la liste.");
+        Noeud precedent = listeATester.getPrecedent(r);
+        assertNotNull(precedent, "Le noeud précédent devrait exister.");
+        assertEquals(3, precedent.getElement(), "Le noeud précédent devrait avoir la valeur 3.");
     }
 }

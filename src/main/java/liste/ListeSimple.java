@@ -108,22 +108,24 @@ public class ListeSimple {
 
     public Noeud getPrecedent(Noeud r) {
     // la liste n'est pas vide puisqu'on transmet un Node de la liste et le Node existe obligatoirement
-    if (tete == null || tete == r) {
-        return null; // Pas de précédent pour le noeud tête ou si la liste est vide
-    }
-    
-    Noeud precedent = tete;
-    Noeud courant = precedent.getSuivant();
-    while (courant != null && courant != r) {
-        precedent = courant;
-        courant = courant.getSuivant();
-    }
-    if (courant == r) {
-        return precedent;
-    } else {
-        return null; 
-    }
-    }
+        if (tete == null || tete == r) {
+            return null;
+        }
+        
+        Noeud precedent = tete;
+        Noeud courant = precedent.getSuivant();
+
+        while (courant != null) {
+            if (courant == r) {
+                return precedent;
+            }
+            precedent = courant;
+            courant = courant.getSuivant();
+        }
+
+    // Lever une exception si le noeud r n'est pas trouvé dans la liste
+    throw new IllegalArgumentException("Le noeud spécifié n'appartient pas à la liste.");
+}
 
     public void echanger(Noeud r1, Noeud r2) {
         if (r1 == r2)
