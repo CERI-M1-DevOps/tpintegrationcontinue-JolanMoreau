@@ -256,4 +256,70 @@ import static org.junit.jupiter.api.Assertions.*;
         System.out.println(listeATester);
         assertEquals("ListeSimple(Noeud(4), Noeud(2), Noeud(3), Noeud(1), Noeud(5))",listeATester.toString());
     }
+
+    @Test
+    void ajoutUnSeulElement() {
+        listeATester.ajout(42);
+        assertNotNull(listeATester.tete);
+        assertEquals(42, listeATester.tete.getElement());
+    }
+
+    @Test
+    void modifiePremierElementNonExistant() {
+        listeATester.ajout(1);
+        listeATester.modifiePremier(999, 4); // élément inexistant
+        assertEquals("ListeSimple(Noeud(1))", listeATester.toString());
+    }
+
+    @Test
+    void supprimePremierNonExistant() {
+        listeATester.ajout(1);
+        listeATester.supprimePremier(999); // élément inexistant
+        assertEquals(1, listeATester.getSize());
+        assertEquals("ListeSimple(Noeud(1))", listeATester.toString());
+    }
+
+    void getAvantDernier() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        assertEquals(2, listeATester.getAvantDernier().getElement());
+    }
+
+    @Test
+    void getPrecedent() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        Noeud secondNode = listeATester.tete;
+        assertEquals(1, listeATester.getPrecedent(secondNode).getElement());
+    }
+
+
+
+    @Test
+    void inverserListeAvecElements() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.inverser();
+        assertEquals("ListeSimple(Noeud(1), Noeud(2))", listeATester.toString());
+    }
+
+    @Test
+    void echangerDeuxNoeuds() {
+        listeATester.ajout(3);
+        listeATester.ajout(2);
+        Noeud r1 = listeATester.tete;
+        listeATester.ajout(1);
+        Noeud r2 = listeATester.tete;
+        listeATester.echanger(r1, r2);
+        assertEquals("ListeSimple(Noeud(2), Noeud(1), Noeud(3))", listeATester.toString());
+    }
+
+    @Test
+    void echangerNoeudAvecLuiMeme() {
+        listeATester.ajout(1);
+        Noeud r1 = listeATester.tete;
+        listeATester.echanger(r1, r1);
+        assertEquals("ListeSimple(Noeud(1))", listeATester.toString());
+    }
 }
