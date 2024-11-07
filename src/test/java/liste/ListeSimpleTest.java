@@ -315,16 +315,72 @@ import static org.junit.jupiter.api.Assertions.*;
         listeATester.echanger(r1, r1);
         assertEquals("ListeSimple(Noeud(1))", listeATester.toString());
     }
+    @Test
     void getPrecedent() {
         listeATester.ajout(1);
         listeATester.ajout(2);
         listeATester.ajout(3);
         
         Noeud r = listeATester.tete.getSuivant();  // Noeud valide pour getPrecedent
-    
         assertNotNull(r, "Le noeud r devrait être dans la liste.");
         Noeud precedent = listeATester.getPrecedent(r);
         assertNotNull(precedent, "Le noeud précédent devrait exister.");
         assertEquals(3, precedent.getElement(), "Le noeud précédent devrait avoir la valeur 3.");
     }
+    @Test
+void getPrecedentDebutListe() {
+    listeATester.ajout(1);
+    listeATester.ajout(2);
+    Noeud r = listeATester.tete;  // Premier noeud
+    assertNull(listeATester.getPrecedent(r), "Le noeud en tête n'a pas de précédent.");
+}
+
+@Test
+void getPrecedentNoeudNonPresent() {
+    listeATester.ajout(1);
+    listeATester.ajout(2);
+    Noeud noeudNonListe = new Noeud(3, null); // Noeud non inclus
+    assertThrows(IllegalArgumentException.class, () -> listeATester.getPrecedent(noeudNonListe), 
+        "Le noeud n'appartient pas à la liste, une exception devrait être levée.");
+}
+@Test
+void echangerDeuxNoeudsListeDeuxElements() {
+    listeATester.ajout(2);
+    listeATester.ajout(1);
+    Noeud r1 = listeATester.tete;
+    Noeud r2 = r1.getSuivant();
+    listeATester.echanger(r1, r2);
+    assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
+}
+@Test
+void modifiePremierElementAbsent() {
+    listeATester.ajout(1);
+    listeATester.modifiePremier(99, 2); // Élément non présent
+    assertEquals("ListeSimple(Noeud(1))", listeATester.toString());
+}
+
+@Test
+void modifieTousElementsAbsents() {
+    listeATester.ajout(1);
+    listeATester.ajout(1);
+    listeATester.modifieTous(99, 2); // Aucun 99 présent
+    assertEquals("ListeSimple(Noeud(1), Noeud(1))", listeATester.toString());
+}
+@Test
+void supprimePremierUnSeulElement() {
+    listeATester.ajout(1);
+    listeATester.supprimePremier(1);
+    assertNull(listeATester.tete, "La liste devrait être vide après suppression.");
+    assertEquals(0, listeATester.getSize());
+}
+@Test
+void supprimeTousElementAbsent() {
+    listeATester.ajout(1);
+    listeATester.ajout(2);
+    listeATester.supprimeTous(3); // Aucun élément 3 présent
+    assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
+    assertEquals(2, listeATester.getSize());
+}
+
+        
 }
