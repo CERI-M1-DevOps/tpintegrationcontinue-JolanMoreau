@@ -381,7 +381,10 @@ void supprimeTousElementAbsent() {
     assertEquals("ListeSimple(Noeud(2), Noeud(1))", listeATester.toString());
     assertEquals(2, listeATester.getSize());
 }
-
+@Test
+void getPrecedentListeVide() {
+    assertNull(listeATester.getPrecedent(null), "Si la liste est vide, getPrecedent devrait retourner null.");
+}
 
 @Test
 void getPrecedentTete() {
