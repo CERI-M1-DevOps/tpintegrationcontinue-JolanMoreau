@@ -42,7 +42,12 @@ public class ListeSimple {
         sb.append(")");
         return sb.toString();
     }
-
+ /**
+     * Supprime le premier élément de la liste.
+     * Cette méthode Supprime le premier élément de la liste.
+     * 
+     * @param element Le premier element de la Liste
+     */
     public void supprimePremier(Object element) {
         if (tete != null) {
             if (tete.getElement() == element) {
